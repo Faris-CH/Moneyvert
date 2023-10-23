@@ -1,0 +1,192 @@
+<UI>
+
+    converted: converted
+    input: input
+
+    btn: btn
+    dropdown: dropdown
+    btn2: btn2
+    dropdown2: dropdown2
+
+    cad: cad
+    usd: usd
+    lira: lira
+
+    cad2: cad2
+    usd2: usd2
+    lira2: lira2
+
+    canvas.before:
+        Color:
+            rgba: (57/255, 57/255, 64/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    FloatLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Button:
+            id: btn
+            text: "Select"
+            font_size: 40
+            color: 0, 0, 0
+            bold: True
+            pos_hint: {"left": 0.1, "center_y": 0.7}
+            size_hint: (0.3, .2)
+            on_release: dropdown.open(self)
+
+        DropDown:
+            id: dropdown
+            on_select: btn.text = f'{args[1]}'
+
+            Button:
+                id: cad
+                text: 'CAD'
+                color: 0, 0, 0
+                bold: True
+                background_normal: "cadflag.jpeg"
+                size_hint_y: None
+                height: '75dp'
+                on_release: dropdown.select('CAD')
+                on_press: root.change_to_cad()
+
+            Button:
+                id: lira
+                text: 'Lira'
+                color: 0, 0, 0
+                bold: True
+                background_normal: "turkeyflag.png"
+                size_hint_y: None
+                height: '75dp'
+                on_release: dropdown.select('Lira')
+                on_press: root.change_to_lira()
+
+            Button:
+                id: usd
+                text: 'USD'
+                background_normal: "flag.png"
+                color: 0, 0, 0
+                bold: True
+                size_hint_y: None
+                height: '75dp'
+                on_release: dropdown.select('USD')
+                on_press: root.change_to_usd()
+
+        Button:
+            id: btn2
+            text: "Select"
+            font_size: 40
+            color: 0, 0, 0
+            bold: True
+            pos_hint: {"x": 0.7, "center_y": 0.7}
+            size_hint: (0.3, .2)
+            on_release: dropdown2.open(self)
+
+        DropDown:
+            id: dropdown2
+            on_select: btn2.text = '{}'.format(args[1])
+
+            Button:
+                id: cad2
+                text: 'CAD'
+                size_hint_y: None
+                height: '75dp'
+                color: 0, 0, 0
+                background_normal: "cadflag.jpeg"
+                bold: True
+                on_release: dropdown2.select('CAD')
+                on_press: root.change_to_cad2()
+
+            Button:
+                id: lira2
+                text: 'Lira'
+                size_hint_y: None
+                height: '75dp'
+                color: 0, 0, 0
+                background_normal: "turkeyflag.png"
+                bold: True
+                on_release: dropdown2.select('Lira')
+                on_press: root.change_to_lira2()
+
+            Button:
+                id: usd2
+                text: 'USD'
+                background_normal: "flag.png"
+                color: 0, 0, 0
+                bold: True
+                size_hint_y: None
+                height: '75dp'
+                on_release: dropdown2.select('USD')
+                on_press: root.change_to_usd2()
+
+
+    FloatLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "CurrencyConverter"
+            font_size: 65
+            bold: True
+            pos_hint: {"center_x": 0.5, "top": .95}
+            size_hint: (None, None)
+            color: (11/255, 145/255, 33/255, 1)
+
+        Label:
+            id: converted
+            text: "-"
+            font_size: 40
+            bold: True
+            pos_hint: {"x": 0.76, "center_y": 0.45}
+            size_hint: (None, None)
+
+        Label:
+            id: input
+            text: "Amount: "
+            font_size: 40
+            pos_hint: {"x": 0.07, "center_y": 0.45}
+            size: 10, 50
+            size_hint: (0.1, 0.1)
+
+        TextInput:
+            id: input
+            font_size: 50
+            halign: "center"
+            valign: "middle"
+            font_name: "Arial"
+            size_hint: (None, None)
+            size: 200, 80
+            pos_hint: {"x": 0.22, "center_y": 0.45}
+            multiline: False
+
+        RoundedButton:
+            text: "Convert"
+            font_size: 40
+            pos_hint: {"center_x": .5, "y": 0.1}
+            size_hint: 0.8, 0.17
+            on_press: root.generate_convert()
+
+        Button:
+            font_size: 40
+            pos_hint: {"center_x": .5, "center_y": 0.7}
+            size_hint: 0.15, 0.15
+            background_normal: "reverse2.jpeg"
+            on_press: root.reverse()
+
+<RoundedButton@Button>
+    background_color: (0,0,0,0)
+    background_normal: ""
+    canvas.before:
+        Color:
+            rgba: (48/255, 84/255, 150/255, 1) if self.state=='normal' else (0,.7,.7,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [60]
+
+
+
+
